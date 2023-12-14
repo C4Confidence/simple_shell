@@ -1,13 +1,13 @@
-#include "shell.h"
+`#include "shell.h"
 
 /**
  * iprompt - This displays the prompt
- * 
+ * @av: average variable
  * @env: environment variable
  * Return: Always 0
  */
 
-void iprompt( char **env)
+void iprompt(char **av, char **env)
 {
 	char *str = NULL;
 	int p, status;
@@ -18,6 +18,7 @@ void iprompt( char **env)
 
 	while (1)
 	{
+		if (isatty(STDIN_FILENO))
 	iprint("Wagwan$ ");
 
 	char_num = getline(&str, &n, stdin);
@@ -31,7 +32,7 @@ void iprompt( char **env)
 	{
 		if (str[p] == '\n')
 			str[p] = 0;
-		p++;
+	i	p++;
 	}
 	argv[0] = str;
 	child_pid = fork();
@@ -44,7 +45,7 @@ void iprompt( char **env)
 	if (child_pid == 0)
 	{
 		if (execve(argv[0], argv, env) == -1)
-			perror("execve");
+			printf("%s: No such file or directory\n", av[0]);
 		exit(EXIT_FAILURE);
 	}
 	else
