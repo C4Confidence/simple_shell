@@ -2,20 +2,16 @@
 
 /**
  * main - check the code
+ * @ac: character
+ * 
+ * @env: environment variable
  *
  * Return: Always 0
  */
 
-int main(void)
+int main(int ac, char **env)
 {
-	char com[140];
-
-	while (1)
-	{
-		iprompt();
-		read_com(com, sizeof(com));
-		execute_com(com);
-	}
-
+	if (ac == 1)
+		iprompt(env);
 	return (0);
 }

@@ -9,7 +9,7 @@
 #include <sys/wait.h>
 
 int add(int n1, int n2);
-void iprompt(void);
+void iprompt(char **env);
 void iprint(const char *text);
 void read_com(char *com, size_t size);
 void execute_com(const char *com);
